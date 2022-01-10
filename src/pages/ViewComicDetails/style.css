@@ -1,0 +1,8 @@
+.flex{
+  display: flex;
+  flex-direction: column;
+}
+.buttons{
+  display: flex;
+  flex-wrap: wrap;
+}
