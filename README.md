@@ -1,6 +1,7 @@
-# Getting Started with Create React App
+# Cinnecta Marvel Challenge
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Use Eslint with style guide from airbnb
 
 ## Available Scripts
 
@@ -39,8 +40,24 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
+### `npm run lint`
+
+Search to issues and notice about.
+
+### `npm run lint:fix`
+
+Search to issues and enforce indetation and fix problems
+
+Use Eslint and Prettier
+
+## To developement
+
+The recommended IDE is the VSCode, install plugins to eslint, prettier and editorconfig to follow the style guide.
+
 ## Learn More
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+You can learn more about to use Eslint in the [Eslint documentation](https://eslint.org/)
