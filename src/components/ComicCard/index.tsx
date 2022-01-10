@@ -12,6 +12,7 @@ export function ComicCard({ id, srcImage, alt, name }: IComicCard) {
   return (
     <button
       type="button"
+      className="cardbutton"
       onClick={() => history.push(`/view-comic-details/${id}`)}
     >
       <div className="card">

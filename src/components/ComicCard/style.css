@@ -2,12 +2,12 @@ img {
   max-width: 200px;
 }
 
-button {
+.cardbutton {
   border: none;
   background-color: transparent;
 }
 
-button:hover {
+.cardbutton:hover {
   background-color: green;
   cursor: pointer;
 }

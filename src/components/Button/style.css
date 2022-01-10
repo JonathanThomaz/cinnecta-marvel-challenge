@@ -8,11 +8,11 @@
   align-items: center;
   justify-content: center;
 }
-input{
+.button{
   border: none;
   background-color: transparent;
 }
 .buttonContainer,
-input:hover{
+.button:hover{
   cursor: pointer;
 }

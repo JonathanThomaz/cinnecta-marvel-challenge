@@ -1,12 +1,12 @@
 import './style.css';
-import { InputHTMLAttributes } from 'react';
+import { ButtonHTMLAttributes } from 'react';
 
-type IInputProps = InputHTMLAttributes<HTMLInputElement>;
+type IInputProps = ButtonHTMLAttributes<HTMLButtonElement>;
 
 export function Button({ ...rest }: IInputProps): JSX.Element {
   return (
     <div className="buttonContainer">
-      <input type="button" {...rest} />
+      <button className="button" type="button" {...rest} />
     </div>
   );
 }

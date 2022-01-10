@@ -1,7 +1,7 @@
 import { Button } from 'components/Button';
 import { Header } from 'components/Header';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import api from 'services/marvelApi';
 import './style.css';
 
@@ -30,6 +30,7 @@ interface IRequestGetComic {
 
 function ViewComicDetails() {
   const { id } = useParams<{ id: string }>();
+  const history = useHistory();
   const [comic, setComic] = useState<IComic>();
   useEffect(() => {
     async function getComic() {
@@ -58,8 +59,16 @@ function ViewComicDetails() {
           </h3>
         </div>
         <div className="buttons">
-          <Button name="buy" value="Comprar" />
-          <Button name="back" value="Voltar" />
+          <Button name="buy" value="buy">
+            Comprar
+          </Button>
+          <Button
+            name="goback"
+            value="goback"
+            onClick={() => history.push('/')}
+          >
+            Voltar
+          </Button>
         </div>
       </div>
     </div>

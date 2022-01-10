@@ -7,8 +7,7 @@ function ViewComics() {
     <div className="container">
       <Header title="Comics" />
       <div className="content">
-        <input type="text" id="find" placeholder="Search" />
-        <div className="flex cards">
+        <div className="cards">
           <ComicCard
             name="teste"
             srcImage="http://i.annihil.us/u/prod/marvel/i/mg/c/80/5e3d7536c8ada.jpg"
