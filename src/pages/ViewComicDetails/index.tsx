@@ -1,11 +1,15 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Button } from 'components/Button';
 import { Header } from 'components/Header';
+import { getAmountById } from 'helpers/getAmountById';
+import { useAppDispatch, useAppSelector } from 'hooks';
 import { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import api from 'services/marvelApi';
+import { checkoutComic } from 'store/slices/comicsSlice';
 import './style.css';
 
-interface IComic {
+interface IComicDetails {
   id: number;
   digitalId: number;
   title: string;
@@ -23,24 +27,33 @@ interface IComic {
   textObjects: Array<string>;
   resourceURI: string;
   thumbnail: { path: string; extension: string };
+  amount: number;
 }
 interface IRequestGetComic {
-  data: { results: Array<IComic> };
+  data: { results: Array<IComicDetails> };
 }
 
 function ViewComicDetails() {
   const { id } = useParams<{ id: string }>();
+  const { listOfComics } = useAppSelector(state => state.comics);
+  const dispatch = useAppDispatch();
+
   const history = useHistory();
-  const [comic, setComic] = useState<IComic>();
+  const [comic, setComic] = useState<IComicDetails>();
   useEffect(() => {
     async function getComic() {
+      const amount = getAmountById(id, listOfComics);
+      if (comic) {
+        setComic({ ...comic, amount });
+        return;
+      }
       const request = await api.get<IRequestGetComic>(`/comics/${id}`);
       if (request.data.data.results[0]) {
-        setComic(request.data.data.results[0]);
+        setComic({ ...request.data.data.results[0], amount });
       }
     }
     getComic();
-  }, [id]);
+  }, [id, listOfComics]);
   return (
     <div className="container">
       <Header title={comic?.title || ''} />
@@ -52,6 +65,7 @@ function ViewComicDetails() {
           />
         </div>
         <div className="flex details">
+          <h3>Quadrinhos disponiveis: {comic?.amount} </h3>
           <h3>Número de páginas: {comic?.pageCount} </h3>
           <h3>
             Data de publicação:{' '}
@@ -59,7 +73,18 @@ function ViewComicDetails() {
           </h3>
         </div>
         <div className="buttons">
-          <Button name="buy" value="buy">
+          <Button
+            name="buy"
+            value="buy"
+            disabled={comic?.amount === 0}
+            onClick={() => {
+              if (comic?.id) {
+                dispatch(
+                  checkoutComic({ id: comic?.id.toString(), amount: 1 })
+                );
+              }
+            }}
+          >
             Comprar
           </Button>
           <Button
