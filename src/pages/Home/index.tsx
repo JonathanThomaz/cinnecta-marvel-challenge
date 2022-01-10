@@ -5,7 +5,7 @@ import './style.css';
 function Home() {
   return (
     <div className="container">
-      <Header />
+      <Header title="Home Page" />
       <div className="content">
         <div className="flex files-content">
           <Box />
