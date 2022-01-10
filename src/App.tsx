@@ -1,11 +1,11 @@
-import { BrowserRouter } from 'react-router-dom';
+import { AppProvider } from 'hooks';
 import { MyRoutes } from 'routes';
 
 function App() {
   return (
-    <BrowserRouter>
+    <AppProvider>
       <MyRoutes />
-    </BrowserRouter>
+    </AppProvider>
   );
 }
 

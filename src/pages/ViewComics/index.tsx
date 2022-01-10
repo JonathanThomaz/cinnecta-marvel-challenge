@@ -1,33 +1,24 @@
 import { ComicCard } from 'components/ComicCard';
 import { Header } from 'components/Header';
+import { useAppSelector } from 'hooks';
 import './style.css';
 
 function ViewComics() {
+  const { listOfComics } = useAppSelector(state => state.comics);
+
   return (
     <div className="container">
       <Header title="Comics" />
       <div className="content">
         <div className="cards">
-          <ComicCard
-            name="teste"
-            srcImage="http://i.annihil.us/u/prod/marvel/i/mg/c/80/5e3d7536c8ada.jpg"
-            id="98402"
-          />
-          <ComicCard
-            name="teste"
-            srcImage="http://i.annihil.us/u/prodada.jpg"
-            id="1"
-          />
-          <ComicCard
-            name="teste"
-            srcImage="http://i.annihil.us/u/prod/marvel/i/mg/c/80/5e3d7536c8ada.jpg"
-            id="1"
-          />
-          <ComicCard
-            name="teste"
-            srcImage="http://i.annihil.us/u/prod/marvel/i/mg/c/80/5e3d7536c8ada.jpg"
-            id="1"
-          />
+          {listOfComics.map(item => (
+            <ComicCard
+              key={item.id}
+              name={item.title}
+              srcImage={item.srcThumbnail}
+              id={item.id}
+            />
+          ))}
         </div>
       </div>
     </div>
